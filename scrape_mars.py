@@ -40,9 +40,11 @@ def scrape():
 
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-    full_img2= soup.find('div', class_='fancybox-inner').find('img')['src']
 
-    featured_image_url = f'https://www.jpl.nasa.gov{full_image2}'
+    full_image = soup.find('a', class_="button fancybox")['data-fancybox-href']
+    featured_image_url = f'https://www.jpl.nasa.gov{full_image}'
+
+
 
     weather_url = 'https://twitter.com/marswxreport?lang=en'
     response = requests.get(weather_url)
