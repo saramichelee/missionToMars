@@ -1,8 +1,9 @@
-def mars_scrape():
+def scrape():
 
     from bs4 import BeautifulSoup
     import requests
     import pymongo
+    import time
 
     from splinter import Browser
 
@@ -30,19 +31,18 @@ def mars_scrape():
     img_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(img_url)
 
+    time.sleep(1)
+
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
     browser.click_link_by_partial_text('FULL IMAGE')
 
-    browser.find_by_css('a.fancybox-expand').first.click()
-
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
+    full_img2= soup.find('div', class_='fancybox-inner').find('img')['src']
 
-    full_image = soup.find('div', class_='fancybox-inner').find('img')['src']
-
-    featured_image_url = f'https://www.jpl.nasa.gov{full_image}'
+    featured_image_url = f'https://www.jpl.nasa.gov{full_image2}'
 
     weather_url = 'https://twitter.com/marswxreport?lang=en'
     response = requests.get(weather_url)
@@ -119,6 +119,8 @@ def mars_scrape():
         
     hemisphere_image_urls = []
 
+    browser.quit()
+
     for x in range(0,4):
         dictn = {"title":hemispheres[x],"img_url":hem_images[x]}
         hemisphere_image_urls.append(dictn)
@@ -128,6 +130,6 @@ def mars_scrape():
                     "current_weather": mars_weather,
                     "facts": fact_dict,
                     "hemispheres": hemisphere_image_urls}
-    print(mars_combined)
+    return mars_combined
 
-mars_scrape()
+# scrape()
