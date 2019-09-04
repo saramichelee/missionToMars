@@ -7,17 +7,11 @@ from splinter import Browser
 
 import pandas as pd
 
-def init_browser:
+def init_browser():
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
     return Browser('chrome', **executable_path, headless=False)
 
 def scrape():
-
-    conn = 'mongodb://localhost:27017'
-    client = pymongo.MongoClient(conn)
-
-    db = client.m2mars_db
-    collection = db.mars_news
 
     news_url = 'https://mars.nasa.gov/news/'
     response = requests.get(news_url)
@@ -130,10 +124,24 @@ def scrape():
         hemisphere_image_urls.append(dictn)
 
     mars_combined = {"news": {"title" : news_title, "paragraph": news_paragraph},
-                    "featured_img": featured_image_url,
-                    "current_weather": mars_weather,
-                    "facts": fact_dict,
-                    "hemispheres": hemisphere_image_urls}
+                "featured_img": featured_image_url,
+                "current_weather": mars_weather,
+                "facts": fact_dict,
+                "hemispheres": hemisphere_image_urls}
+    # mars_combined = [{"news": {"title" : news_title, "paragraph": news_paragraph}},
+    #             {"featured_img": featured_image_url},
+    #             {"current_weather": mars_weather},
+    #             {"facts": fact_dict},
+    #             {"hemispheres": hemisphere_image_urls}]
+    
+    # conn = 'mongodb://localhost:27017'
+    # client = pymongo.MongoClient(conn)
+
+    # db = client.m2mars_db
+    # collection = db.mars_info
+
+    # db.collection.insert_many(
+    #         mars_combined
+    # )
     return mars_combined
 
-# scrape()
