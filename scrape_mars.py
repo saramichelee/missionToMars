@@ -1,13 +1,17 @@
+from bs4 import BeautifulSoup
+import requests
+import pymongo
+import time
+
+from splinter import Browser
+
+import pandas as pd
+
+def init_browser:
+    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    return Browser('chrome', **executable_path, headless=False)
+
 def scrape():
-
-    from bs4 import BeautifulSoup
-    import requests
-    import pymongo
-    import time
-
-    from splinter import Browser
-
-    import pandas as pd
 
     conn = 'mongodb://localhost:27017'
     client = pymongo.MongoClient(conn)
@@ -25,8 +29,7 @@ def scrape():
     paragraph = soup.find('div', class_='rollover_description_inner').text
     news_paragraph = paragraph.replace("\n","")
 
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = init_browser()
 
     img_url = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
     browser.visit(img_url)
@@ -44,7 +47,7 @@ def scrape():
     full_image = soup.find('a', class_="button fancybox")['data-fancybox-href']
     featured_image_url = f'https://www.jpl.nasa.gov{full_image}'
 
-
+    browser.quit()
 
     weather_url = 'https://twitter.com/marswxreport?lang=en'
     response = requests.get(weather_url)
@@ -86,8 +89,7 @@ def scrape():
 
     updated_html = html_table.replace('\n', '')
 
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = init_browser()
 
     hem_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(hem_url)
