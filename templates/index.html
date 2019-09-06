@@ -32,20 +32,46 @@
           </div>
         </div>
         <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <h2>Featured Mars Image</h2>
-                    <img src="{{ information.featured_img }}" alt="Mars image" class="featuredpic" width=600px>
+                    <img src="{{ information.featured_img }}" alt="Mars image" class="featuredpic" width=90%>
                     </div>
-                    <div class="col-md-3">
+                <div class="col-md-4">
+                    <div class="facts-box">
                             <h2>Current Weather on Mars</h2>
                             <p>{{ information.current_weather }}</p>
-                            </div>
-                            <div class="col-md-3">
-                                    <h2>Mars Facts</h2>
-                                    </div>
-                  </div>
+                        </div>
+                            <!-- <div class="col-md-3"> -->
+                            <h2>Mars Facts</h2>
+                </div>
     </div>
-
+    <div class="container">
+            <div class="row">
+              <div class="col-md-12 hempics">
+                    <h2>Mars Hemispheres</h2>
+                    <div class="row">
+                    <div class="col-md-6">  
+                            <figure class="figure">
+                            <img src="{{ information.hemispheres[0].img_url }}" class="figure-img img-fluid rounded" alt="lat vs cloud graph" width=90%>
+                            <figcaption class="figure-caption text-center">{{ information.hemispheres[0].title }}</figcaption>
+                        </figure></div>
+                        <div class="col-md-6">  
+                        <figure class="figure">
+                              <img src="{{ information.hemispheres[1].img_url }}" class="figure-img img-fluid rounded" alt="lat vs cloud graph" width=90%>
+                              <figcaption class="figure-caption text-center">{{ information.hemispheres[1].title }}</figcaption>
+                        </figure></div></div>
+                        <div class="row">
+                        <div class="col-md-6">  
+                        <figure class="figure">
+                            <img src="{{ information.hemispheres[2].img_url }}" class="figure-img img-fluid rounded" alt="lat vs cloud graph" width=90%>
+                            <figcaption class="figure-caption text-center">{{ information.hemispheres[2].title }}</figcaption>
+                        </figure></div>
+                        <div class="col-md-6">
+                        <figure class="figure">
+                            <img src="{{ information.hemispheres[3].img_url }}" class="figure-img img-fluid rounded" alt="lat vs cloud graph" width=90%>
+                            <figcaption class="figure-caption text-center">{{ information.hemispheres[3].title }}</figcaption>
+                        </figure></div></div>
+                        </div>
   </div>
 </body>
 
