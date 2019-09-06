@@ -7,13 +7,13 @@ import scrape_mars
 app = Flask(__name__)
 
 mongo = PyMongo(app, uri="mongodb://localhost:27017/m2mars_db")
-
+mongo.db.mars_info.drop()
 
 # create route that renders index.html template
 @app.route("/")
 def index():
-    information = mongo.db.mars_info.find()
-    return render_template("index.html", info=information)
+    information = mongo.db.mars_info.find_one()
+    return render_template("index.html", information=information)
 
 
 @app.route("/scrape")
@@ -21,7 +21,7 @@ def scraper():
     information = mongo.db.mars_info
     mars_data = scrape_mars.scrape()
     information.update({},mars_data, upsert=True)
-    return redirect("/")
+    return redirect("/", code=302)
 
     # return jsonify(scrape_mars.scrape())
 

@@ -13,14 +13,14 @@
 <body>
   <div class="container-fluid">
     <div class="jumbotron text-center">
-      <h1>Visit the...</h1>
-      <p>Beach. Rainforest. Volcano. Tree House. Sloths.</p>
+      <h1>Mars Stuff</h1>
+      <p>Some information about Mars.</p>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
     </div>
-    <img src="{{ info.featured_img }}" alt="Mars image">
-    <h2>The typical weather in Costa Rica is:</h2>
-    <h3>Max Temp: {{ info.current_weather }}</h3>
-    <!-- <h3>Min Temp: {{ info.min_temp }}</h3> -->
+    <img src="{{ information.featured_img }}" alt="Mars image">
+    <h2>The typical weather on Mars is:</h2>
+    <h3>{{ information.current_weather }}</h3>
+    <!-- <h3>Min Temp: {{ information.min_temp }}</h3> -->
   </div>
   </div>
 </body>

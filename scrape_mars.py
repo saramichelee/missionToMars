@@ -128,20 +128,6 @@ def scrape():
                 "current_weather": mars_weather,
                 "facts": fact_dict,
                 "hemispheres": hemisphere_image_urls}
-    # mars_combined = [{"news": {"title" : news_title, "paragraph": news_paragraph}},
-    #             {"featured_img": featured_image_url},
-    #             {"current_weather": mars_weather},
-    #             {"facts": fact_dict},
-    #             {"hemispheres": hemisphere_image_urls}]
-    
-    # conn = 'mongodb://localhost:27017'
-    # client = pymongo.MongoClient(conn)
 
-    # db = client.m2mars_db
-    # collection = db.mars_info
-
-    # db.collection.insert_many(
-    #         mars_combined
-    # )
     return mars_combined
 
