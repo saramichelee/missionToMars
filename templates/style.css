@@ -13,6 +13,9 @@ div .facts-box {
     margin-right: 15px;
     margin-left: 15px;
 }
+.figure-caption {
+    padding: 10px;
+}
 figure {
     padding: 15px;
 }
