@@ -20,6 +20,9 @@ div .facts-box {
     padding: 15px;
     border: 1px solid gray;
 }
+.facts-box h2 {
+    margin-top: 5px;
+}
   </style>
 </head>
 
@@ -27,13 +30,8 @@ div .facts-box {
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <h1>Mission To Mars</h1>
-      <!-- <p>Some information about Mars.</p> -->
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data!</a></p>
     </div>
-    <!-- <img src="{{ information.featured_img }}" alt="Mars image"> -->
-    <!-- <h2>The typical weather on Mars is:</h2>
-    <h3>{{ information.current_weather }}</h3> -->
-    <!-- <h3>Min Temp: {{ information.min_temp }}</h3> -->
   </div>
   <div class="container">
     <div class="row">
@@ -53,8 +51,15 @@ div .facts-box {
                             <h2>Current Weather on Mars</h2>
                             <p>{{ information.current_weather }}</p>
                         </div>
-                            <!-- <div class="col-md-3"> -->
                             <h2>Mars Facts</h2>
+                            <table class="table table-bordered table-dark">
+                                {% for key, value in information.facts.items() %}
+                                    <tr>
+                                        <th> {{ key }} </th>
+                                        <td> {{ value }} </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
                 </div>
     </div>
     <div class="container">

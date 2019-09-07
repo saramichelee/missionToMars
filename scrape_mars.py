@@ -79,8 +79,6 @@ def scrape():
 
     html_table = fact_df.to_html()
 
-    html_table = fact_df.to_html()
-
     updated_html = html_table.replace('\n', '')
 
     browser = init_browser()
