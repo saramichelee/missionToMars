@@ -7,7 +7,6 @@ import scrape_mars
 app = Flask(__name__)
 
 mongo = PyMongo(app, uri="mongodb://localhost:27017/m2mars_db")
-mongo.db.mars_info.drop()
 
 # create route that renders index.html template
 @app.route("/")
@@ -18,6 +17,7 @@ def index():
 
 @app.route("/scrape")
 def scraper():
+    mongo.db.mars_info.drop()
     information = mongo.db.mars_info
     mars_data = scrape_mars.scrape()
     information.update({},mars_data, upsert=True)
